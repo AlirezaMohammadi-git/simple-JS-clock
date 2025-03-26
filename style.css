@@ -3,6 +3,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overflow: hidden;
 }
 
 .html {
@@ -71,6 +72,23 @@ body {
 
   html {
     font-size: 50%;
+  }
+
+  .clock {
+    width: 35rem;
+    height: 35rem;
+  }
+
+  .hand {
+    width: 14rem;
+  }
+
+  .min-hand {
+    width: 13rem;
+  }
+
+  .hour-hand {
+    width: 9.5rem;
   }
 
 }
