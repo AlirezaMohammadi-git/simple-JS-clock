@@ -39,14 +39,10 @@
       const minute = today.minute()
       const hour = today.hour()
 
-      let secDegrees = 90 + (6 * second);
-      let minDegrees = 90 + (6 * minute);
-      let hourDegrees = (15 * hour);
-
-      // Ensure clockwise movement
-      if (secDegrees < lastSecDegrees) {
-        secDegrees += 360; // Add 360 to maintain clockwise rotation
-      }
+      // 90 is initial offset
+      let secDegrees = (6 * second) + 90;
+      let minDegrees = minutesToDegrees(minute, second) + 90;
+      let hourDegrees = calculateHourHandPosition(hour,minute,second) + 90;
 
       secHand.style.transform = `rotate(${secDegrees}deg)`;
       minHand.style.transform = `rotate(${minDegrees}deg)`;
@@ -55,9 +51,20 @@
       // Update lastSecDegrees for the next iteration
       lastSecDegrees = secDegrees % 360;
 
-      console.log(` time : ${hour}:${minute}:${second}  degrees:${secDegrees}`)
+      console.log(` time : ${hour}:${minute}:${second}  degrees:${hourDegrees}`)
 
     }
+
+
+    function minutesToDegrees(minutes, seconds) {
+      return ((minutes * 60 + seconds) / 3600) * 360;
+    }
+
+    function calculateHourHandPosition(hours, minutes, seconds) {
+      return ( (hours * 60 * 60 + (minutes * 60) + seconds) / 43200 ) * 360;
+    }
+
+
 
 
 
